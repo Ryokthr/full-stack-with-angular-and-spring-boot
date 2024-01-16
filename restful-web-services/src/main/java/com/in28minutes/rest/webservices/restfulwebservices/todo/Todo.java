@@ -1,6 +1,7 @@
 package com.in28minutes.rest.webservices.restfulwebservices.todo;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class Todo {
 	private long id;
@@ -58,4 +59,20 @@ public class Todo {
 		this.isDone = isDone;
 	}
 
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Todo other = (Todo) obj;
+		return id == other.id;
+	}
 }
