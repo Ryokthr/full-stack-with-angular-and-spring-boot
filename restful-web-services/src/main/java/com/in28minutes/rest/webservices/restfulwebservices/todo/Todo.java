@@ -58,6 +58,10 @@ public class Todo {
 		this.targetDate = targetDate;
 		this.isDone = isDone;
 	}
+	
+	protected Todo() {
+		
+	}
 
 	@Override
 	public int hashCode() {
