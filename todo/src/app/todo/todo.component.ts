@@ -31,7 +31,7 @@ export class TodoComponent {
   }
 
   saveTodo(): void {
-    if (this.id === -1) {
+    if (this.id == -1) {
       this.todoService.createTodo('in28minutes', this.todo).subscribe(data => {
         console.log(data);
         this.router.navigate(['todos']);
