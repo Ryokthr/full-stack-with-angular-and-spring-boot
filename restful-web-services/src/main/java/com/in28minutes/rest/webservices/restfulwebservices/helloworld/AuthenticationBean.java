@@ -1,6 +1,6 @@
 package com.in28minutes.rest.webservices.restfulwebservices.helloworld;
 
-public class HelloWorldBean {
+public class AuthenticationBean {
 
 	private String message;
 
@@ -12,7 +12,7 @@ public class HelloWorldBean {
 		return message;
 	}
 
-	public HelloWorldBean(String message) {
+	public AuthenticationBean(String message) {
 		this.message = message;
 	}
 }
