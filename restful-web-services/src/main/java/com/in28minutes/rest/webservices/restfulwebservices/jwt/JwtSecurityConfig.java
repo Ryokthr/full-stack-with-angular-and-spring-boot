@@ -1,5 +1,6 @@
 package com.in28minutes.rest.webservices.restfulwebservices.jwt;
 
+// ↓は追加
 import static org.springframework.security.config.Customizer.*;
 
 import java.security.KeyPair;
