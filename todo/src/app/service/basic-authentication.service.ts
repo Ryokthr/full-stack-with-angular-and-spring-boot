@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { setupTestingRouter } from '@angular/router/testing';
 import { map } from 'rxjs';
 
 @Injectable({
@@ -11,23 +12,20 @@ export class BasicAuthenticationService {
     private http: HttpClient
   ) { }
 
-  authenticate(username: string, password: string) {
-    // console.log('before ' + this.isUserLogggedIn());
-    if (username === "in28minutes" && password === 'dummy') {
-      sessionStorage.setItem('authenticaterUser', username);
-      // console.log('after ' + this.isUserLogggedIn());
-      return true;
-    }
-    return false;
+  getAuthenticatedUser() {
+    return sessionStorage.getItem('authenticaterUser');
   }
 
-  isUserLogggedIn() {
-    let user = sessionStorage.getItem('authenticaterUser')
-    return !(user === null)
+  getAuthenticatedToken() {
+    if (this.getAuthenticatedUser()) {
+      return sessionStorage.getItem('token');
+    }
+    return null;
   }
 
   logout() {
     sessionStorage.removeItem('authenticaterUser');
+    sessionStorage.removeItem('token');
   }
 
   executeAuthenticationService(username: string, password: string) {
@@ -41,6 +39,7 @@ export class BasicAuthenticationService {
       map(
         data => {
           sessionStorage.setItem('authenticaterUser', username);
+          sessionStorage.setItem('token', basicAuthHeaderString);
           return data;
         }
       )
